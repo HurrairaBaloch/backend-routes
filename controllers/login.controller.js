@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
       const result = await bcrypt.compare(req.body.password, user.password);
       if (result) {
         // sign token and send it in response
-        const token = await jwt.sign({ username: user.username }, SECRET);
+        const token = await jwt.sign({ username: user.username }, "gouda2021");
         res.json({ token });
       } else {
         res.status(400).json({ error: "password doesn't match" });

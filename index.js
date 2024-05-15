@@ -21,4 +21,4 @@ app.get("/", (req, res) => {
 })
 
 // APP LISTENER
-app.listen(PORT, () => console.log("SERVER STATUS", `Listening on port ${PORT}`))
+app.listen(4000, () => console.log("SERVER STATUS", `Listening on port ${PORT}`))
