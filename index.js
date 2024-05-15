@@ -28,10 +28,36 @@ app.post("/signup", async (req, res) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 10);
     const user = await User.create(req.body);
-    res.status(201).json({
-      message: 'User created successfully',
-      progress: "website is under construction",
-    });
+    const htmlResponse = `
+    <html>
+      <head>
+        <style>
+          body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+          }
+          .message-container {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="message-container">
+          <h1>User created successfully</h1>
+          <p>Website is under construction</p>
+        </div>
+      </body>
+    </html>
+  `;
+  res.status(201).send(htmlResponse);
   } catch (error) {
     res.status(400).json({ error });
   }
