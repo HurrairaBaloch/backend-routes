@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors()) // add cors headers
 app.use(express.json()) // parse json bodies
 
-app.use("/user", UserRouter)
+app.use("/api", UserRouter)
 // ROUTES AND ROUTES
 app.get("/", (req, res) => {
     res.send("this is the test route to make sure server is working")
