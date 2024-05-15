@@ -5,10 +5,10 @@ const User = require("./userSchema/userSchema.js"); // import user model
 const bcrypt = require("bcryptjs"); // import bcrypt to hash passwords
 const jwt = require("jsonwebtoken"); // import jwt to sign tokens
 const cors = require("cors"); // import cors
-
+const connectDB = require("./db");
 // DESTRUCTURE ENV VARIABLES WITH DEFAULT VALUES
 const { PORT = 3000 } = process.env;
-
+connectDB();
 // Create Application Object
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -26,9 +26,7 @@ app.get("/about", (req, res) => {
 });
 app.post("/signup", async (req, res) => {
   try {
-    // hash the password
     req.body.password = await bcrypt.hash(req.body.password, 10);
-    // create a new user
     const user = await User.create(req.body);
     res.status(201).json({
       message: 'User created successfully',
