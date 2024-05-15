@@ -1,8 +1,11 @@
 require("dotenv").config() // load .env variables
 const express = require("express") // import express
-const mongoose=require('./db.js')
+require("dotenv").config(); // load .env variables
+const { Router } = require("express"); // import router from express
+const User = require("./userSchema/userSchema.js"); // import user model
+const bcrypt = require("bcryptjs"); // import bcrypt to hash passwords
+const jwt = require("jsonwebtoken"); // import jwt to sign tokens
 const cors = require("cors") // import cors
-const UserRouter = require("./controllers/login.controller.js")
 //DESTRUCTURE ENV VARIABLES WITH DEFAULT VALUES
 const {PORT = 3000} = process.env
 
@@ -14,11 +17,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors()) // add cors headers
 app.use(express.json()) // parse json bodies
 
-app.use("/api/", UserRouter)
 // ROUTES AND ROUTES
 app.get("/", (req, res) => {
     res.send("this is the test route to make sure server is working")
 })
+app.post("/signup",async (req, res) => {
+        try {
+          // hash the password
+          req.body.password = await bcrypt.hash(req.body.password, 10);
+          // create a new user
+          const user = await User.create(req.body);
+          res.status(201).json({
+            message: 'User created successfully',
+            progress:"website is under construction",
+        });
+        } catch (error) {
+          res.status(400).json({ error });
+        }
+      
+})
+
 
 // APP LISTENER
 app.listen(4000, () => console.log("SERVER STATUS", `Listening on port ${PORT}`))
