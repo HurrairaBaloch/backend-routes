@@ -51,8 +51,8 @@ app.post("/signup", async (req, res) => {
       </head>
       <body>
         <div class="message-container">
-          <h1>User created successfully</h1>
-          <p>Website is under construction</p>
+        <h1>Bem-vindo, ${user.username}</h1>
+        <p>O site está em construção</p>
         </div>
       </body>
     </html>
