@@ -21,6 +21,9 @@ app.use(express.json()) // parse json bodies
 app.get("/", (req, res) => {
     res.send("this is the test route to make sure server is working")
 })
+app.get("/about", (req, res) => {
+    res.send("this is tabout page")
+})
 app.post("/signup",async (req, res) => {
         try {
           // hash the password
