@@ -6,7 +6,6 @@ const bcrypt = require("bcryptjs"); // import bcrypt to hash passwords
 const jwt = require("jsonwebtoken"); // import jwt to sign tokens
 const cors = require("cors"); // import cors
 const connectDB = require("./db");
-// DESTRUCTURE ENV VARIABLES WITH DEFAULT VALUES
 const { PORT = 3000 } = process.env;
 connectDB();
 // Create Application Object

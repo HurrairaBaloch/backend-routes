@@ -3,7 +3,7 @@ const mongoose = require("mongoose") //import fresh mongoose object
 
 const connectDB = async () => {
     try {
-      await mongoose.connect("mongodb+srv://hurairabaloch996:Huraira@cluster0.23sonw2.mongodb.net/AounDb", {
+      await mongoose.connect("mongodb+srv://card61345:9ZdMlvjNiuiOYXoq@cluster0.dyvp4rr.mongodb.net/AounDb", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       });
